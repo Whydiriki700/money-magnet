@@ -1,0 +1,13 @@
+name: money-magnet
+version: 1.0.0
+description: "Finance tracker + money magnet for Hermes Agent. Track expenses/income, budget alerts, crypto portfolio PnL, and arbitrage opportunity scanner. Built for daily money awareness."
+author: "Levi Angel"
+requires_hermes: ">=0.22.0"
+provides_tools:
+  - finance_add
+  - finance_list
+  - finance_budget
+  - finance_portfolio
+  - finance_arbitrage
+provides_commands:
+  - money
