@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 from typing import Any
 
@@ -23,7 +24,13 @@ def _wrap(fn, allowed):
 
     def handler(args: dict | None = None, **_kw: Any):
         data = args or {}
-        return fn(**{k: v for k, v in data.items() if k in allowed})
+        result = fn(**{k: v for k, v in data.items() if k in allowed})
+        # Hermes tool results must be strings (tools/registry.py
+        # _normalize_handler_result rejects anything else with
+        # "unsupported result type"); the library returns dicts, and the
+        # call itself has already executed by the time that error would
+        # surface, so serialize here instead of failing after the fact.
+        return result if isinstance(result, str) else json.dumps(result)
 
     return handler
 
