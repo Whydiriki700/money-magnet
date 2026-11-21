@@ -1,3 +1,5 @@
+![money-magnet](assets/preview.png)
+
 # money-magnet
 
 **Your agent, watching your money.**
